@@ -1,3 +1,7 @@
+/* :root{
+
+} */
+
 *{
   margin: 0;
   padding: 0;
@@ -6,16 +10,48 @@
 header{
   display: flex;
   width: 100%;
-  /* padding: 1.5em 1em; */
+  align-items: center;
+  justify-content: space-between;
   height: 8vh;
   font-size: 1.1em;
   background-color: #121212;
   color: #fff;
- 
+  padding: 0 1.4em;
+  letter-spacing: 1px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: 0px 8px 10px -6px gray;
+}
+nav{
+  display: flex;
+  gap: .8em;
+}
+
+/* NAVBAR link */
+.link{
+  text-decoration: none;
+  color: inherit;
+  font-weight: 300;
+  position: relative;
+}
+.link:not(.logo):before{
+  content: "";
+  width: 0;
+  height: 3px;
+  border-radius: 1em;
+  position: absolute;
+  top:115%;
+  background-color: orange;
+  transition: .4s;
+}
+.link:hover::before,
+.link:active::before,
+.link:focus::before{
+  color: #cecdcd;
+  width: 70%;
 }
 
 main{
-  background-color: rgb(228, 228, 228);
+  /* background-color: rgb(228, 228, 228); */
   min-height: 80vh;
 }
 
