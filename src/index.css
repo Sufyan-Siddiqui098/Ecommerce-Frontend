@@ -24,7 +24,7 @@ header{
 }
 
 .sideBar{
-  display: inherit;
+  display: none;
   width: 100vw;
   /* border: 2px solid red; */
   background-color: #12121257;
@@ -57,15 +57,18 @@ nav{
   box-shadow: 0px 0px 10px 0px black;
   border-radius: .3em;
 }
-
-/* NAVBAR link */
+/* ALL LINKS */
 .link{
   text-decoration: none;
   color: inherit;
+}
+/* NAVBAR link */
+.nav-link{
   font-weight: 300;
   position: relative;
+
 }
-.link:not(.logo):before{
+.nav-link:not(.logo):before{
   content: "";
   width: 0;
   height: 3px;
@@ -110,7 +113,7 @@ footer{
   padding: 1em .3em;
   min-height: 12vh;
 }
-footer .text{
+footer .footer-text{
   font-size: 1.2em;
 }
 footer .footer-links {

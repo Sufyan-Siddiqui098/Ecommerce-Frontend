@@ -30,11 +30,11 @@ const Header = () => {
           </div>
             <RxHamburgerMenu className='menu' onClick={activeNavBar}/>
         <nav ref={navBar}>
-            <Link className='link' onClick={deActiveNavBar} to='/'>Home</Link>
-            <Link className='link' onClick={deActiveNavBar} to='/category'>Category</Link>
-            <Link className='link' onClick={deActiveNavBar} to='/register'>Register</Link>
-            <Link className='link' onClick={deActiveNavBar} to='/login'>Login</Link>
-            <Link className='link' onClick={deActiveNavBar} to='/cart'>Cart (0)</Link>
+            <Link className='link nav-link' onClick={deActiveNavBar} to='/'>Home</Link>
+            <Link className='link nav-link' onClick={deActiveNavBar} to='/category'>Category</Link>
+            <Link className='link nav-link' onClick={deActiveNavBar} to='/register'>Register</Link>
+            <Link className='link nav-link' onClick={deActiveNavBar} to='/login'>Login</Link>
+            <Link className='link nav-link' onClick={deActiveNavBar} to='/cart'>Cart (0)</Link>
 
         </nav>
     </header>
