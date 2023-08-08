@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import "./pnf.css"
+import "./styles/pnf.css"
 const PageNotFound = () => {
   return (
    <div className="pnf">

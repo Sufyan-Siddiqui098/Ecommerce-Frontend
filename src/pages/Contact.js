@@ -1,7 +1,7 @@
 import React from 'react'
 import {BsTelephone} from 'react-icons/bs'
 import {HiOutlineMail} from 'react-icons/hi'
-import "./contact.css"
+import "./styles/contact.css"
 
 const ContactUs = () => {
   return (
