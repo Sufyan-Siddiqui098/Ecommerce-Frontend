@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import "../styles/register.css"
+import { registerUser } from '../../store/UserSlice'
+import { useDispatch } from 'react-redux'
 
 const Register = () => {
   const [name, setName ] = useState('')
@@ -8,8 +10,13 @@ const Register = () => {
   const [phone, setPhone] = useState('')
   const [address, setAddress] = useState("")
 
+  const dispatch = useDispatch();
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    const user = {name, email, password, phone, address}
+     dispatch(registerUser(user))
+     console.log("inside form submit function ",user)
   }
 
   return (
