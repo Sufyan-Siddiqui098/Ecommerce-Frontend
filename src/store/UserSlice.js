@@ -11,7 +11,7 @@ export const registerUser = createAsyncThunk('user/register', async(data)=>{
         });
         const json = await response.json();
         console.log("json", json)
-        return json;
+        return json;            //return - will make the json available in action.payload below;
 
     }
     catch(error){
