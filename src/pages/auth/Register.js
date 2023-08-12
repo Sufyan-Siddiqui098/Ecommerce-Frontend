@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import "../styles/register.css"
 import { registerUser } from '../../store/UserSlice'
 import { useDispatch } from 'react-redux'
+import {useNavigate} from 'react-router-dom'
 
 const Register = () => {
   const [name, setName ] = useState('')
@@ -11,11 +12,13 @@ const Register = () => {
   const [address, setAddress] = useState("")
 
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const user = {name, email, password, phone, address}
      dispatch(registerUser(user))
+     navigate("/login")
      console.log("inside form submit function ",user)
   }
 
@@ -37,11 +40,11 @@ const Register = () => {
           </div>
           <div className="field">
             <label htmlFor="phone">Phone</label>
-            <input type="text" name="phone" id="phone" required value={phone} onChange={(e)=>setPhone(e.target.value)}/>
+            <input type="text" name="phone" id="phone" placeholder='Type phone here' required value={phone} onChange={(e)=>setPhone(e.target.value)}/>
           </div>
           <div className="field">
             <label htmlFor="address">Address</label>
-            <textarea name="address" id="address" required value={address}  onChange={(e)=>setAddress(e.target.value)}></textarea>
+            <textarea name="address" id="address" placeholder='Type Address here.' required value={address}  onChange={(e)=>setAddress(e.target.value)}></textarea>
           </div>
           <button className='btn-submit'>Register</button>
         </form>
