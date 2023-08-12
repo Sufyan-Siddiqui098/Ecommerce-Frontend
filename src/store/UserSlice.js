@@ -22,15 +22,28 @@ export const registerUser = createAsyncThunk('user/register', async(data)=>{
 export  const userSlice = createSlice({
     name: 'user',
     initialState:{
-        userInfo : []
+        userInfo : {},
+        message: '',
+        error: false
     },
     reducers:{
 
     },
     extraReducers: (builder) => {
+        //Register new user
         builder.addCase(registerUser.fulfilled, (state, action)=>{
-            console.log("action", action.payload)
-            state.userInfo.push(action.payload) 
+            if(action.payload.success){
+                state.error = false;
+                // console.log("action", action.payload.user)
+                state.userInfo = action.payload.user;
+                state.message = action.payload.message;
+                console.log("userInfo at redux-toolkit ", state.userInfo);
+            }
+            else{
+                state.error = true;
+                state.message = action.payload.message
+                // console.log("Error occured", state.error)
+            }
         })
     }
 })
