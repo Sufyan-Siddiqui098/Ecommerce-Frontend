@@ -1,0 +1,46 @@
+.hide {
+    display: none;
+}
+.alert{
+    max-width: max-content;
+    padding: 1.5rem 1rem ;
+    position: absolute;
+    top: 110%;
+    color: black;
+    right: 2%;
+    box-shadow: 0px 0px 10px 0px #121212;
+    /* border: 2px solid pink; */
+}
+.show{
+    display: unset;
+}
+
+.alert::after{
+    content: "";
+    position: absolute;
+    top:100%;   
+    left: 0;
+    height: 4px;
+    animation-name: bottomStrip;
+    animation-duration: 1.8s;
+    animation-timing-function: ease-out;
+}
+.success::after{
+    background-color: green;
+}
+.error::after{
+    background-color: red;
+}
+
+@keyframes bottomStrip {
+    from{
+        width: 100%;
+    } 
+    to {
+        width: 0%;
+    }
+}
+
+/* .success{
+
+} */

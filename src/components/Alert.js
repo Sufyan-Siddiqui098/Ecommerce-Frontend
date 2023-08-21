@@ -1,12 +1,13 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import './alert.css'
 
 const Alert = () => {
-  const msg = useSelector((state)=>state.user.message);
-  const err = useSelector((state) => state.error)
+  const {message, error, alert} = useSelector((state)=>state.user);
+  
   return (
-    <div className={`msg ${err?"error":"success"}`}>
-      <p>{msg}</p>
+    <div className={`alert ${alert? "show":"hide"} ${error?"error":"success"}`}>
+      <p>{message}</p>
     </div>
   )
 }

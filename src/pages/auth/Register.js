@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import "../styles/register.css"
-import { registerUser } from '../../store/UserSlice'
+import { registerUser, switchAlert } from '../../store/UserSlice'
 import { useDispatch } from 'react-redux'
 import {useNavigate} from 'react-router-dom'
 
@@ -19,7 +19,10 @@ const Register = () => {
     const user = {name, email, password, phone, address}
      dispatch(registerUser(user))
      navigate("/login")
-     console.log("inside form submit function ",user)
+     setTimeout(() => {
+      dispatch(switchAlert())
+     }, 2000);
+    //  console.log("inside form submit function ",user)
   }
 
   return (

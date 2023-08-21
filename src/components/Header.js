@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import {RxHamburgerMenu} from 'react-icons/rx'
+import Alert from './Alert'
 
 const Header = () => {
   const navBar = useRef(null)
@@ -24,6 +25,7 @@ const Header = () => {
   }
   
   return (
+    <>
     <header>
           <Link to='/' className='link logo'>🛒 Ecommerce App</Link>
           <div className="sideBar" ref={sideBar} onClick={deActiveNavBar}>
@@ -37,7 +39,9 @@ const Header = () => {
             <Link className='link nav-link' onClick={deActiveNavBar} to='/cart'>Cart (0)</Link>
 
         </nav>
+    <Alert/>
     </header>
+    </>
   )
 }
 
