@@ -1,8 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+//SIGNUP / REGISTER --- new user
 export const registerUser = createAsyncThunk("user/register", async (data) => {
   try {
-    const response = await fetch("http://localhost:8080/api/v1/auth/register", {
+    const response = await fetch(`${process.env.REACT_APP_API}/api/v1/auth/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -16,6 +17,11 @@ export const registerUser = createAsyncThunk("user/register", async (data) => {
     console.log("Error:", error);
   }
 });
+
+//LOGIN - UnderConstruction==========================
+// export const loginUser = createAsyncThunk('user/login', async(date)=>{
+//   const response = await fetch(`${process.env.REACT_APP_API}/api/v1/login`)
+// })
 
 export const userSlice = createSlice({
   name: "user",
@@ -32,6 +38,7 @@ export const userSlice = createSlice({
         state.error = false;
       }
       state.alert = false;
+      // console.log()
     },
   },
   extraReducers: (builder) => {
