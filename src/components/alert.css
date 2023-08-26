@@ -1,18 +1,31 @@
 .hide {
     display: none;
 }
+/* adjusting the react-icon height/width for better UI */
+.icon{
+    height: 30px;
+    width: 30px;
+}
 .alert{
+    z-index: 5;
     max-width: max-content;
     padding: 1.5rem 1rem ;
     position: absolute;
     top: 110%;
     color: black;
+    background-color: #fafafa;
     right: 2%;
     box-shadow: 0px 0px 10px 0px #121212;
     /* border: 2px solid pink; */
 }
 .show{
     display: unset;
+}
+.flex{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: .4em;
 }
 
 .alert::after{
@@ -22,11 +35,11 @@
     left: 0;
     height: 4px;
     animation-name: bottomStrip;
-    animation-duration: 1.8s;
-    animation-timing-function: ease-out;
+    animation-duration: 2.2s;
+    animation-timing-function: ease-in;
 }
 .success::after{
-    background-color: green;
+    background-color: rgb(0, 180, 0);
 }
 .error::after{
     background-color: red;
