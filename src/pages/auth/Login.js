@@ -1,20 +1,22 @@
 import React,{useState} from 'react';
 import '../styles/register.css'
+import { loginUser, switchAlert } from '../../store/UserSlice';
+import { useDispatch } from 'react-redux';
 
 const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const dispatch = useDispatch()
 
+  
     const handleSubmit = (e) => {
         e.preventDefault();
         const user = {email, password}
-        console.log("On Login submit ", user)
-        //  dispatch(registerUser(user))
+         dispatch(loginUser(user))
         //  navigate("/login")
-        //  setTimeout(() => {
-        //   dispatch(switchAlert())
-        //  }, 2000);
-        //  console.log("inside form submit function ",user)
+         setTimeout(() => {
+          dispatch(switchAlert())
+         }, 2500);
       }
 
   return (
