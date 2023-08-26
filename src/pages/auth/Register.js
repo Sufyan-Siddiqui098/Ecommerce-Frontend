@@ -18,11 +18,11 @@ const Register = () => {
     e.preventDefault();
     const user = {name, email, password, phone, address}
      dispatch(registerUser(user))
-     navigate("/login")
+    //  redirect to LOGIN page
+     navigate('/login') 
      setTimeout(() => {
-      dispatch(switchAlert())
-     }, 2000);
-    //  console.log("inside form submit function ",user)
+       dispatch(switchAlert())
+      }, 2400);
   }
 
   return (
