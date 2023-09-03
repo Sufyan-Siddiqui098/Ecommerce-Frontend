@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/register.css";
 import { loginUser, switchAlert } from "../../store/UserSlice";
 import { useDispatch } from "react-redux";
@@ -10,6 +10,11 @@ const Login = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  useEffect(()=>{
+    //Clear the localStorage to avoid multiple auth-token.
+    localStorage.clear()
+    console.log("clear localStorage", localStorage)
+  },[])
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -25,8 +30,11 @@ const Login = () => {
           body: JSON.stringify(user),
         }
       );
+      // console.log("response ", response)
 
       const json = await response.json();
+      // Auth token is setted inside local storage.
+      localStorage.setItem("auth", json.token)
       dispatch(loginUser(json));
 
       if (json.success) {
