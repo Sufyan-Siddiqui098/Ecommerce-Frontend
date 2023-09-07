@@ -10,10 +10,12 @@ const Login = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  
   useEffect(()=>{
     //Clear the localStorage to avoid multiple auth-token.
-    localStorage.clear()
-    console.log("clear localStorage", localStorage)
+    if(localStorage.length>0){
+      localStorage.clear();
+    }
   },[])
 
   const handleLogin = async (e) => {
@@ -35,6 +37,7 @@ const Login = () => {
       const json = await response.json();
       // Auth token is setted inside local storage.
       localStorage.setItem("auth", json.token)
+      localStorage.setItem('user', JSON.stringify(json.user))
       dispatch(loginUser(json));
 
       if (json.success) {
