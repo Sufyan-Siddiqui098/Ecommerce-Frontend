@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import "../styles/register.css";
 import { loginUser, switchAlert } from "../../store/UserSlice";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const location = useLocation();
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -41,7 +42,7 @@ const Login = () => {
       dispatch(loginUser(json));
 
       if (json.success) {
-        navigate("/");
+        navigate(location.state ||"/");
       }
       // -------- HIDE ALERT MESSAGE
       setTimeout(() => {

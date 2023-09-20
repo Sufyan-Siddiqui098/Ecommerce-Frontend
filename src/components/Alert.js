@@ -9,7 +9,7 @@ const Alert = () => {
   
   return (
     <div className={`alert ${alert? "show":"hide"} ${error?"error":"success"}`}>
-      <p className='flex'>{error? <RxCross2 className='icon' /> : <MdOutlineDownloadDone className='icon'/>}{`${message}`}</p>
+      <p className='dflex'>{error? <RxCross2 className='icon' /> : <MdOutlineDownloadDone className='icon'/>}{`${message}`}</p>
     </div>
   )
 }
