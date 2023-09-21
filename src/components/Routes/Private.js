@@ -17,8 +17,8 @@ const PrivateRoute = () => {
                     "authorization": authToken
                 }
             })
-    
-            if(res.ok){
+            const json = await res.json();
+            if(json.ok){
                 setOk(true)
             } else {
                 setOk(false)

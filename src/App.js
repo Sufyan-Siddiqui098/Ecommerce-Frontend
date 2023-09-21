@@ -10,6 +10,7 @@ import Register from "./pages/auth/Register";
 import Login from "./pages/auth/Login";
 import Dashboard from "./pages/user/Dashboard";
 import PrivateRoute from "./components/Routes/Private";
+import ForgetPassword from "./pages/auth/ForgetPassword";
 
 function App() {
   return (
@@ -23,11 +24,12 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/policy" element={<Policy />} />
           <Route path="/login" element={<Login/>} />
-          <Route path="*" element={<PageNotFound />} />
           {/* if Authorized then go to dashboard. Possible with Outlet */}
           <Route path='/dashboard' element={<PrivateRoute/>}>
             <Route path="" element={<Dashboard/>} />
           </Route>
+          <Route path="/forget-password" element={<ForgetPassword/>} />
+          <Route path="*" element={<PageNotFound />} />
           
         </Routes>
       </main>

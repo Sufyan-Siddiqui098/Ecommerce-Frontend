@@ -50,10 +50,21 @@ export const userSlice = createSlice({
       }
       state.alert = true;
       state.message = action.payload.message;
+    },
+
+    // ------------- Forgot passowrd
+    forgetPassword : (state, action) => {
+      if(!action.payload.success){
+        state.error = true;
+      } else {
+        state.error = false;
+      }
+      state.alert = true;
+      state.message = action.payload.message;
     }
   }
   
 });
 
-export const { loginUser, switchAlert, registerUser, logoutUser } = userSlice.actions;
+export const { loginUser, switchAlert, registerUser, logoutUser, forgetPassword } = userSlice.actions;
 export default userSlice.reducer;
