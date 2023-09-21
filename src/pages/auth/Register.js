@@ -10,6 +10,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
+  const [answer, setAnswer] = useState("");
 
 
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ const Register = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const user = { name, email, password, phone, address };
+      const user = { name, email, password, phone, address, answer };
       const response = await fetch(
         `${process.env.REACT_APP_API}/api/v1/auth/register`,
         {
@@ -47,11 +48,12 @@ const Register = () => {
 
   return (
     <div className="register">
-      <h1>Register Page</h1>
       <form onSubmit={handleRegister}>
-        <div className="field">
-          <label htmlFor="name">Name</label>
+        <h1 className="text-2xl mb-7 sm:text-3xl sm:mb-8 ">Register Page</h1>
+        <div className="grid grid-cols-1 sm:grid-cols-[1fr_3fr] gap-[1em] w-full">
+          <label htmlFor="name" className="hidden sm:block">Name</label>
           <input
+            className="p-2 rounded-md border-[1px] border-gray-300"
             type="text"
             name="name"
             id="name"
@@ -61,9 +63,10 @@ const Register = () => {
             onChange={(e) => setName(e.target.value)}
           />
         </div>
-        <div className="field">
-          <label htmlFor="emial">Email</label>
+        <div className="grid grid-cols-1 sm:grid-cols-[1fr_3fr] gap-[1em] w-full">
+          <label htmlFor="emial" className="hidden sm:block">Email</label>
           <input
+            className="p-2 rounded-md border-[1px] border-gray-300"
             type="email"
             name="email"
             id="email"
@@ -73,9 +76,10 @@ const Register = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-        <div className="field">
-          <label htmlFor="password">Password</label>
+        <div className="grid grid-cols-1 sm:grid-cols-[1fr_3fr] gap-[1em] w-full">
+          <label htmlFor="password" className="hidden sm:block">Password</label>
           <input
+             className="p-2 rounded-md border-[1px] border-gray-300"
             type="password"
             name="password"
             id="password"
@@ -85,9 +89,10 @@ const Register = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <div className="field">
-          <label htmlFor="phone">Phone</label>
+        <div className="grid grid-cols-1 sm:grid-cols-[1fr_3fr] gap-[1em] w-full">
+          <label htmlFor="phone" className="hidden sm:block">Phone</label>
           <input
+            className="p-2 rounded-md border-[1px] border-gray-300"
             type="text"
             name="phone"
             id="phone"
@@ -97,9 +102,10 @@ const Register = () => {
             onChange={(e) => setPhone(e.target.value)}
           />
         </div>
-        <div className="field">
-          <label htmlFor="address">Address</label>
+        <div className="grid grid-cols-1 sm:grid-cols-[1fr_3fr] gap-[1em] w-full">
+          <label htmlFor="address" className="hidden sm:block">Address</label>
           <textarea
+            className="p-2 rounded-md border-[1px] border-gray-300"
             name="address"
             id="address"
             placeholder="Type Address here."
@@ -107,6 +113,20 @@ const Register = () => {
             value={address}
             onChange={(e) => setAddress(e.target.value)}
           ></textarea>
+        </div>
+        {/* Question to forget password */}
+        <div className="grid grid-cols-1 sm:grid-cols-[1fr_3fr] gap-[1em] w-full">
+          <label htmlFor="address" className="hidden sm:block">Secret key</label>
+          <input
+          className="p-2 rounded-md border-[1px] border-gray-300"
+            type= 'text'
+            name="answer"
+            id="answer"
+            placeholder="Fav person | sports"
+            required
+            value={answer}
+            onChange={(e) => setAnswer(e.target.value)}
+          ></input>
         </div>
         <button className="btn-submit">Register</button>
       </form>

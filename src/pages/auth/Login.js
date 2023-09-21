@@ -55,27 +55,29 @@ const Login = () => {
 
   return (
     <div className="register">
-      <h1>Login Page</h1>
-      <form onSubmit={handleLogin}>
-        <div className="field">
-          <label htmlFor="emial">Email</label>
+      <form className="sm:!px-6 !py-[2em]" onSubmit={handleLogin}>
+        <h1 className="text-2xl mb-7 sm:text-3xl sm:mb-8">Login Page</h1>
+        <div className="grid grid-cols-1 sm:grid-cols-[1fr_3fr] gap-[1em] w-full">
+          <label htmlFor="emial" className="hidden sm:block">Email</label>
           <input
+            className="p-2 rounded-md border-[1px] border-gray-300"
             type="email"
             name="email"
             id="email"
-            placeholder="example@gmail.com"
+            placeholder="Email"
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-        <div className="field">
-          <label htmlFor="password">Password</label>
+        <div className="grid grid-cols-1 sm:grid-cols-[1fr_3fr] gap-[1em] w-full">
+          <label htmlFor="password" className="hidden sm:block">Password</label>
           <input
+            className="p-2 rounded-md border-[1px] border-gray-300"
             type="password"
             name="password"
             id="password"
-            placeholder="Type password here"
+            placeholder="Password"
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -83,6 +85,7 @@ const Login = () => {
         </div>
 
         <button className="btn-submit">Login</button>
+        <button type="button" className="text-md text-gray-600 hover:underline" onClick={()=>navigate('/forget-password')}>Forget Password</button>
       </form>
     </div>
   );
