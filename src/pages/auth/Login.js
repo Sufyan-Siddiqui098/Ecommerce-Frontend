@@ -33,7 +33,6 @@ const Login = () => {
           body: JSON.stringify(user),
         }
       );
-      // console.log("response ", response)
 
       const json = await response.json();
       // Auth token is setted inside local storage.
