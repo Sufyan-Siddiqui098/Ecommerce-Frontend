@@ -14,11 +14,11 @@ const PrivateRoute = () => {
             const res = await fetch('/api/v1/auth/user-auth',{
                 method: "GET",
                 headers: {
-                    "authorization": authToken
+                    "Authorization": authToken
                 }
             })
-            const json = await res.json();
-            if(json.ok){
+
+            if(res.ok){
                 setOk(true)
             } else {
                 setOk(false)
@@ -28,7 +28,7 @@ const PrivateRoute = () => {
         if(authToken!== ''){
             authCheck();
         }
-        console.log("private running")
+        console.log("private componnet running")
 
     },[authToken])
     
