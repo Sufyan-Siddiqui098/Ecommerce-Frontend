@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import {Outlet} from 'react-router-dom'
 import Spinner from './Spinner'
 
-const PrivateRoute = () => {
+const AdminRoute = () => {
     const [ok, setOk] = useState(false)
 
     const {authToken} = useSelector((state)=>state.user);
@@ -11,10 +11,11 @@ const PrivateRoute = () => {
     useEffect(()=>{
         
         const authCheck = async () => {
-            const res = await fetch(`${process.env.REACT_APP_API}/api/v1/auth/user-auth`,{
+            const res = await fetch(`${process.env.REACT_APP_API}/api/v1/auth/admin-auth`,{
                 method: "GET",
                 headers: {
-                    "Authorization": authToken
+                    "Content-Type": "application/json",
+                    "Authorization": authToken,
                 }
             })
 
@@ -29,11 +30,11 @@ const PrivateRoute = () => {
         if(authToken!== ''){
             authCheck();
         }
-        console.log("private componnet running")
+        console.log("admin private route componnet running")
 
     },[authToken])
     
-    return ok ? <Outlet/> : <Spinner message="Redirecting you" path='/login'/>
+    return ok ? <Outlet/> : <Spinner message="Redirecting you" path='/'/>
 }
 
-export default PrivateRoute;
+export default AdminRoute;
