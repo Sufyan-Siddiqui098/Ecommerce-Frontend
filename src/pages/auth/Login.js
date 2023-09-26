@@ -14,6 +14,7 @@ const Login = () => {
   
   useEffect(()=>{
     //Clear the localStorage to avoid multiple auth-token.
+    document.title = 'Ecommerce App | Login'
     if(localStorage.length>0){
       localStorage.clear();
     }

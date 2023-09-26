@@ -4,6 +4,7 @@ import {HiOutlineMail} from 'react-icons/hi'
 import "./styles/contact.css"
 
 const ContactUs = () => {
+  document.title = 'Ecommerce App | Conotact'
   return (
     <div className='contact-container'>
       <div className="left">

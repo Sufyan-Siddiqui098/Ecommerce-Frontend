@@ -4,12 +4,12 @@ import { useSelector } from "react-redux";
 
 const Home = () => {
   const { userInfo, authToken } = useSelector((state) => state.user);
-  // const dispatch = useDispatch();
 
   // useEffect(()=>{
   //   dispatch(checkUser())
   //   console.log("checking user inside ")
   // },[])
+  document.title = 'Ecommerce App | Home'
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center">

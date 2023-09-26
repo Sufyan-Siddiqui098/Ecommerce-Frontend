@@ -41,6 +41,8 @@ const ForgetPassword = () => {
     }
   };
 
+  document.title = 'Ecommerce App | Forget Password'
+
   return (
     <div className="min-h-screen flex flex-col justify-center items-center">
       <h1 className="text-2xl">Forget Password</h1>

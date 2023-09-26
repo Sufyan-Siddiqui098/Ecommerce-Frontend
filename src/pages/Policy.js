@@ -2,6 +2,8 @@ import React from 'react'
 import './styles/policy.css'
 
 const Policy = () => {
+  document.title = 'Ecommerce App | Policy '
+
   return (
     <div className='policy-container'>
       <section>

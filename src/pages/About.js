@@ -2,6 +2,7 @@ import React from 'react'
 import './styles/about.css'
 
 const About = () => {
+  document.title = 'Ecommerce App | About'
   return (
     <div className='about-container'>
       <div className="left">

@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import "./styles/pnf.css"
 const PageNotFound = () => {
+  document.title = 'Page not found'
   return (
    <div className="pnf">
     <h1>404</h1>

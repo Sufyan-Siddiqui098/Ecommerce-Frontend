@@ -46,6 +46,8 @@ const Register = () => {
     }
   };
 
+  document.title = 'Ecommerce App | Register'
+
   return (
     <div className="register">
       <form onSubmit={handleRegister}>
