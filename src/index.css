@@ -46,6 +46,7 @@ nav{
   display: flex;
   gap: 2em;
   padding-top: 5rem;
+  z-index: 10;
   flex-direction: column;
   /* justify-content: center; */
   align-items: center;

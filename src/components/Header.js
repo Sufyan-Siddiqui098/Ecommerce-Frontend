@@ -9,7 +9,7 @@ const Header = () => {
   const navBar = useRef(null);
   const sideBar = useRef(null);
   const dispatch = useDispatch();
-  const [hidden, setHidden] = useState(true)
+  const [hidden, setHidden] = useState(true);
 
   const { authToken, userInfo } = useSelector((state) => state.user);
   //-- For Hamburger Icon
@@ -67,7 +67,10 @@ const Header = () => {
                 Cart (0)
               </Link>
               {/* <Link className="link btn"onClick={logout} to="/login">Logout</Link> */}
-              <div className="relative inline-block text-left " onClick={()=>setHidden((prev)=>!prev)}>
+              <div
+                className="relative inline-block text-left "
+                onClick={() => setHidden((prev) => !prev)}
+              >
                 <div>
                   <button
                     type="button"
@@ -93,16 +96,30 @@ const Header = () => {
                 </div>
 
                 <div
-                hidden={hidden}
-                  className="absolute top-[100%] right-[-90%] sm:right-0 z-10 mt-2 w-48 sm:w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                  hidden={hidden}
+                  className="absolute top-[100%] right-[-60%] sm:right-0 z-10 mt-2 w-48 sm:w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                   role="menu"
                   aria-orientation="vertical"
                   aria-labelledby="menu-button"
                   tabIndex="-1"
                 >
-                  <div className="py-1 flex flex-col justify-center items-start" >
-                    <Link to={`/dashboard/${userInfo.role===1 ? "admin" : "user"}`}  className="text-gray-700 block px-4 py-2 text-sm hover:underline">Dashboard</Link>
-                    <Link  className=" block px-4 py-2 text-sm text-gray-900 hover:underline " onClick={logout} to="/login">Logout</Link>
+                  <div className="py-1 flex flex-col justify-center items-start">
+                    <Link
+                      onClick={deActiveNavBar}
+                      to={`/dashboard/${
+                        userInfo.role === 1 ? "admin" : "user"
+                      }`}
+                      className="text-gray-700 block px-4 py-2 text-sm hover:underline "
+                    >
+                      Dashboard
+                    </Link>
+                    <Link
+                      className=" block px-4 py-2 text-sm text-gray-900 hover:underline "
+                      onClick={(e)=>{logout(); deActiveNavBar(e)}}
+                      to="/login"
+                    >
+                      Logout
+                    </Link>
                   </div>
                 </div>
               </div>
