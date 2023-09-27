@@ -16,6 +16,8 @@ import AdminDashboard from "./pages/admin/AdminDashboard";
 import CreateCategory from "./pages/admin/CreateCategory";
 import CreateProduct from "./pages/admin/CreateProduct";
 import Users from "./pages/admin/Users";
+import UserProfile from "./pages/user/UserProfile";
+import UserOrders from "./pages/user/UserOrders";
 
 function App() {
   return (
@@ -32,6 +34,8 @@ function App() {
           {/*---- if Authorized then go to dashboard. Possible with Outlet */}
           <Route path='/dashboard' element={<PrivateRoute/>}>
             <Route path="user" element={<Dashboard/>} />
+            <Route path="user/profile" element={<UserProfile/>} />
+            <Route path="user/orders" element={<UserOrders/>} />
           </Route>
           {/* ------ Admin dashboard */}
           <Route path='/dashboard' element={<AdminRoute/>}>
