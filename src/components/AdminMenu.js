@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const AdminMenu = () => {
   const [menu, setMenu] = useState(false);
@@ -66,9 +66,23 @@ const AdminMenu = () => {
           menu ? "flex w-[40vw] visible" : "p-0 w-0 overflow-hidden invisible"
         } px-1 py-6 min-h-min flex-col items-center border rounded-lg bg-gray-100 transition-[width] my-7 sm:flex sm:w-64 sm:px-4 sm:py-6 sm:visible `}
       >
-        <h4 className="font-semibold mb-4 sm:text-xl">Admin Menu</h4>
+        <h4 className="font-semibold mb-4 sm:text-xl">
+          <Link to="/dashboard/admin">Admin Menu</Link>
+        </h4>
         <ul className="text-sm  w-full sm:text-base">
-          {adminLink.map(({name, href}, index) => {
+          <li className="py-1 border-t-2 border-slate-400 block ">
+            <Link
+              to="/dashboard/admin"
+              className={
+                window.location.pathname === "/dashboard/admin"
+                  ? "text-blue-600 sm:font-semibold"
+                  : ""
+              }
+            >
+              Dashboard
+            </Link>
+          </li>
+          {adminLink.map(({ name, href }, index) => {
             return (
               <li
                 key={index}
@@ -76,8 +90,9 @@ const AdminMenu = () => {
               >
                 <NavLink
                   key={index}
-                  className={({ isActive}) =>
-                   isActive ? "text-blue-600 sm:font-semibold" : ""}
+                  className={({ isActive }) =>
+                    isActive ? "text-blue-600 sm:font-semibold" : ""
+                  }
                   to={href}
                 >
                   {name}
