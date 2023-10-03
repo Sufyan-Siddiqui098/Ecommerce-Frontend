@@ -12,6 +12,15 @@ export const userSlice = createSlice({
   //============ REDUCERS ============ 
   reducers: {
 
+    triggerAlert : (state, action) =>{
+      if(!action.payload.success) {
+        state.error  = true
+      } else {
+        state.error = false;
+      } 
+      state.message = action.payload.message;
+
+    },
     // -switch the alert component's display. will use it inside SetTimeout.
     switchAlert: (state, action) => {
       if (state.error) {
@@ -66,5 +75,5 @@ export const userSlice = createSlice({
   
 });
 
-export const { loginUser, switchAlert, registerUser, logoutUser, forgetPassword } = userSlice.actions;
+export const { loginUser, triggerAlert, switchAlert, registerUser, logoutUser, forgetPassword } = userSlice.actions;
 export default userSlice.reducer;

@@ -24,6 +24,9 @@ const AdminDashboard = () => {
           <p>
             <label className="font-medium">Contact:</label> {userInfo.phone}
           </p>
+          <p>
+            <label className="font-medium">Address:</label> {userInfo.address}
+          </p>
         </div>
       </div>
     </div>
