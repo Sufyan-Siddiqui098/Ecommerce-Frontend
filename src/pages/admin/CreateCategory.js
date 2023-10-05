@@ -162,7 +162,8 @@ const CreateCategory = () => {
       </div>
       {/* OUTER MODAL */}
       <div
-        className={`absolute top-0 min-h-screen z-10 p-3 bg-slate-950 bg-opacity-50 ${
+        onClick={(e)=>(e.target.classList.contains('modal'))?setVisible(false): ''}
+        className={`modal absolute top-0 min-h-screen z-10 p-3 bg-slate-950 bg-opacity-50 ${
           visible ? "flex w-full" : "hidden w-0"
         } flex justify-center`}
       >
