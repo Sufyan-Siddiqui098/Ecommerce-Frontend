@@ -3,11 +3,13 @@
 }
 /* adjusting the react-icon height/width for better UI */
 .icon{
-    height: 30px;
-    width: 30px;
+    height: 20px;
+    width: 20px;
 }
 .alert{
     z-index: 5;
+    border-radius: .5em;
+    font-size: .9em;
     max-width: max-content;
     padding: 1.5rem 1rem ;
     position: absolute;
@@ -23,6 +25,7 @@
 }
 .dflex{
     display: flex;
+    /* font-size: .5em; */
     justify-content: space-between;
     align-items: center;
     gap: .4em;
