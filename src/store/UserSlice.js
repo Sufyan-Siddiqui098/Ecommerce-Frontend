@@ -13,6 +13,7 @@ export const userSlice = createSlice({
   reducers: {
 
     triggerAlert : (state, action) =>{
+      state.alert = true;
       if(!action.payload.success) {
         state.error  = true
       } else {
