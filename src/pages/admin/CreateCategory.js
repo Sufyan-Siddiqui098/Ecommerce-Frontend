@@ -147,7 +147,7 @@ const CreateCategory = () => {
     <div className="relative min-h-screen flex  w-full">
       <AdminMenu />
       <div className=" p-1 min-w-[10rem] sm:pl-3 sm:py-3 sm:min-w-[50%]">
-        <h1 className="sm:text-xl my-4">Create Category</h1>
+        <h1 className="font-semibold sm:text-2xl sm:mb-6 my-4">Manage Category</h1>
         {/*  CREATE CATEGORY */}
         <div className="mb-7">
           <CategoryForm
@@ -163,12 +163,14 @@ const CreateCategory = () => {
       {/* OUTER MODAL */}
       <div
         onClick={(e)=>(e.target.classList.contains('modal'))?setVisible(false): ''}
-        className={`modal absolute top-0 min-h-screen z-10 p-3 bg-slate-950 bg-opacity-50 ${
-          visible ? "flex w-full" : "hidden w-0"
+        className={`modal absolute top-0 min-h-screen z-10  bg-slate-950 bg-opacity-50 ${
+          visible ? "flex w-full p-3" : " w-0"
         } flex justify-center`}
       >
         <div
-          className={`bg-slate-950 rounded-md p-5 py-10 flex flex-col gap-9 item-center h-max min-h[30vh] min-w-[50vw] sm:min-w-[22rem]`}
+          className={`bg-slate-950 rounded-md   flex flex-col gap-9 item-center -translate-y-[150%]
+          transition delay-100 duration-[350ms] ${visible? "p-5 py-10  h-max min-h[30vh] min-w-[50vw] sm:min-w-[22rem] translate-y-1":"w-0 overflow-hidden"}
+          `}
         >
           <button
             onClick={() => setVisible(false)}
