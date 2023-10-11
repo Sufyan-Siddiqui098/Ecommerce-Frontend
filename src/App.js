@@ -18,6 +18,7 @@ import CreateProduct from "./pages/admin/CreateProduct";
 import Users from "./pages/admin/Users";
 import UserProfile from "./pages/user/UserProfile";
 import UserOrders from "./pages/user/UserOrders";
+import Products from "./pages/admin/Products";
 
 function App() {
   return (
@@ -31,7 +32,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/policy" element={<Policy />} />
           <Route path="/login" element={<Login/>} />
-          {/*---- if Authorized then go to dashboard. Possible with Outlet */}
+          {/*----USER - if Authorized then go to dashboard. Possible with Outlet */}
           <Route path='/dashboard' element={<PrivateRoute/>}>
             <Route path="user" element={<Dashboard/>} />
             <Route path="user/profile" element={<UserProfile/>} />
@@ -41,6 +42,7 @@ function App() {
           <Route path='/dashboard' element={<AdminRoute/>}>
             <Route path="admin" element={<AdminDashboard/>} />
             <Route path="admin/create-category" element={<CreateCategory/>} />
+            <Route path="admin/products" element={<Products/>} />
             <Route path="admin/create-product" element={<CreateProduct/>} />
             <Route path="admin/users" element={<Users/>} />
           </Route>
