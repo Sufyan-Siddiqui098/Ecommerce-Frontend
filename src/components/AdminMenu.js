@@ -13,6 +13,10 @@ const AdminMenu = () => {
       href: "/dashboard/admin/create-category",
     },
     {
+      name:"Products",
+      href: "/dashboard/admin/products"
+    },
+    {
       name: "Users",
       href: "/dashboard/admin/users",
     },
