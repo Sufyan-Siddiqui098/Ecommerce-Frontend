@@ -9,7 +9,6 @@ const CreateProduct = () => {
   //For category options
   const [search, setSearch] = useState("");
   const [hide, setHide] = useState(true);
-  // const optionListRef = useRef(null);
 
   //Categories get from API
   const [categories, setCategories] = useState([]);
@@ -86,12 +85,11 @@ const CreateProduct = () => {
       } catch (error) {
         console.log("Get product Frontend", error);
         dispatch(triggerAlert(error));
-      } finally {
         //Hiding alert
         setTimeout(() => {
           dispatch(switchAlert());
         }, 2000);
-      }
+      } 
     };
 
     getAllCategories();
