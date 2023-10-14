@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { switchAlert, triggerAlert } from "../../store/UserSlice";
 
 const CreateProduct = () => {
-  const {authToken} = useSelector((state)=>state.user)
+  const { authToken } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   //For category options
   const [search, setSearch] = useState("");
@@ -26,36 +26,39 @@ const CreateProduct = () => {
   const [shipping, setShipping] = useState("");
 
   //Create Product Handler
-  const handleCreateProduct = async() => {
+  const handleCreateProduct = async () => {
     try {
       //if we wrap all input tags in the form-element(html) we won't use formData
       const productData = new FormData();
       productData.append("name", name);
-      productData.append('description', description);
-      productData.append("price",price);
+      productData.append("description", description);
+      productData.append("price", price);
       productData.append("category", category);
       productData.append("quantity", quantity);
-      productData.append("shipping",shipping);
-      productData.append('photo', photo)
-      const response = await fetch(`${process.env.REACT_APP_API}/api/v1/product/create-product`, {
-        method: "POST", 
-        headers: {
-          authorization: authToken
-        }, 
-        body: productData
-      });
-      const json = await response.json()
-      dispatch(triggerAlert(json))
+      productData.append("shipping", shipping);
+      productData.append("photo", photo);
+      const response = await fetch(
+        `${process.env.REACT_APP_API}/api/v1/product/create-product`,
+        {
+          method: "POST",
+          headers: {
+            authorization: authToken,
+          },
+          body: productData,
+        }
+      );
+      const json = await response.json();
+      dispatch(triggerAlert(json));
     } catch (error) {
       dispatch(triggerAlert(error));
-      console.log("error", error)
+      console.log("error", error);
     } finally {
       //Hiding alert
       setTimeout(() => {
         dispatch(switchAlert());
       }, 2000);
     }
-  }
+  };
 
   //hide
   const handleHideOptions = (e) => {
@@ -89,7 +92,7 @@ const CreateProduct = () => {
         setTimeout(() => {
           dispatch(switchAlert());
         }, 2000);
-      } 
+      }
     };
 
     getAllCategories();
@@ -199,13 +202,13 @@ const CreateProduct = () => {
             <div className="my-3">
               <label
                 htmlFor="image"
-                className={`p-1 rounded border-[1px] border-[#7aa7c7]  sm:px-2 transition cursor-pointer hover:border-white ${
+                className={`p-1 rounded border-[1px] border-white  sm:px-2 transition cursor-pointer hover:border-[#7aa7c7] focus:border-[#7aa7c7] ${
                   photo
                     ? "bg-sky-600 text-white"
-                    : "bg-[#e1ecf4] text-[#39739d]"
+                    : "bg-[#e9e9e9] text-[#39739d]"
                 }`}
               >
-                {photo ? photo.name : "Product image"}
+                {photo ? photo.name : "Upload Product image"}
                 <input
                   hidden
                   type="file"
@@ -238,12 +241,12 @@ const CreateProduct = () => {
             )}
 
             {/* CREATE PRODUCT BUTTON */}
-            <button 
+            <button
               className="bg-blue-600 border-none outline-none text-white hover:bg-blue-400"
               onClick={handleCreateProduct}
-            >CREATE PRODUCT
+            >
+              CREATE PRODUCT
             </button>
-
           </div>
         </div>
       </div>
