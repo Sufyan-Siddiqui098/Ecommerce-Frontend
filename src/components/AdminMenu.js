@@ -23,7 +23,7 @@ const AdminMenu = () => {
   ];
 
   return (
-    <div className=" min-w-[50px] relative bg-gray-50">
+    <div className=" min-w-[50px] relative bg-gray-50 overflow-scroll">
       {/* MENU ICONs FOR MOBILE VIEW --- START */}
       <div
         className="absolute top-100% my-1 z-10 w-[50px]  flex justify-center items-center sm:hidden"
