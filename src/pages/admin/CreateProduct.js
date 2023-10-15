@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import AdminMenu from "../../components/AdminMenu";
 import { useDispatch, useSelector } from "react-redux";
 import { switchAlert, triggerAlert } from "../../store/UserSlice";
+import { useNavigate } from "react-router-dom";
 
 const CreateProduct = () => {
+  const navigate = useNavigate();
   const { authToken } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   //For category options
@@ -49,6 +51,9 @@ const CreateProduct = () => {
       );
       const json = await response.json();
       dispatch(triggerAlert(json));
+      if(json.success){
+        navigate('/dashboard/admin/products')
+      }
     } catch (error) {
       dispatch(triggerAlert(error));
       console.log("error", error);
