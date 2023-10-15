@@ -67,6 +67,8 @@ const UpdateProduct = () => {
   //Delete Product Handler
   const handleDeleteProduct = async () => {
     try {
+      let answer = window.confirm("Are your sure want to delete?")
+      if(!answer) return 0;
       const response = await fetch(
         `${process.env.REACT_APP_API}/api/v1/product/delete-product/${productId}`,
         {
