@@ -3,7 +3,7 @@ import { NavLink, Link } from "react-router-dom";
 
 const UserMenu = () => {
   const [menu, setMenu] = useState(false);
-  const adminLink = [
+  const navLinks = [
     {
       name: "Profile",
       href: "/dashboard/user/profile",
@@ -64,7 +64,7 @@ const UserMenu = () => {
       >
         <h4 className="font-semibold mb-5 sm:text-xl"><Link to='/dashboard/user'> Dashboard</Link></h4>
         <ul className="text-sm  w-full sm:text-base">
-          {adminLink.map(({name, href}, index) => {
+          {navLinks.map(({name, href}, index) => {
             return (
               <li
                 key={index}
