@@ -13,12 +13,11 @@ header{
   width: 100%;
   align-items: center;
   justify-content: space-between;
-  height: 8vh;
+  min-height: 8vh;
   font-size: 1.1em;
   background-color: #121212;
   color: #fff;
-  padding: 0 1.4em;
-  letter-spacing: 1px;
+  padding: 0 .7em;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   box-shadow: 0px 8px 10px -6px gray;
   position: relative;
@@ -27,12 +26,12 @@ header{
 .sideBar{
   display: none;
   width: 100vw;
-  /* border: 2px solid red; */
   background-color: #12121257;
   position: absolute;
   top:100%;
   left: 0;
   height: 100vh;
+  z-index: 2;
 }
 .menu{
   display: inherit;
@@ -40,23 +39,20 @@ header{
 }
 nav{
   display: none;
-  gap: .8em;
+  gap: .5em;
 }
 .active{
   display: flex;
   gap: 2em;
-  padding-top: 5rem;
+  padding: 3rem .8rem;
   z-index: 10;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
-  /* border: 2px solid green; */
   background-color: #121212;
   position: absolute;
   top: 100%;
   right: 0;
   width: 70%;
-  height: 70vh;
   box-shadow: 0px 0px 10px 0px black;
   border-radius: .3em;
 }
@@ -97,14 +93,11 @@ nav{
   display: flex;
   align-items: center;
   gap: .3em;
-  /* font-size: 1.1em; */
-  /* letter-spacing: 2px; */
   font-weight: bold;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 main{
-  /* background-color: rgb(228, 228, 228); */
   min-height: 85vh;
 }
 
