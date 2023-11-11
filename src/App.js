@@ -20,6 +20,7 @@ import UserProfile from "./pages/user/UserProfile";
 import UserOrders from "./pages/user/UserOrders";
 import Products from "./pages/admin/Products";
 import UpdateProduct from "./pages/admin/UpdateProduct";
+import SearchResult from "./pages/SearchResult.js";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path='/search' element={<SearchResult/>}/>
           <Route path="/register" element={<Register/>} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
