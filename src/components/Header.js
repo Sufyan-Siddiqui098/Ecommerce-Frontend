@@ -1,9 +1,9 @@
 import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { RxHamburgerMenu } from "react-icons/rx";
 import Alert from "./Alert";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser, switchAlert } from "../store/UserSlice";
+import SearchBar from "./SearchBar";
 
 const Header = () => {
   const navBar = useRef(null);
@@ -41,12 +41,22 @@ const Header = () => {
   return (
     <>
       <header>
-        <Link to="/" className="link logo">
+        <Link to="/" className="link logo text-[1rem] tracking-normal">
           🛒 Ecommerce App
         </Link>
         <div className="sideBar" ref={sideBar} onClick={deActiveNavBar}></div>
-        <RxHamburgerMenu className="menu" onClick={activeNavBar} />
-        <nav ref={navBar}>
+        {/* Hamburger Menu icon */}
+        <div className="menu flex flex-col items-center gap-[5px] z-10 w-7 h-max" onClick={activeNavBar}>
+          <span className="w-full h-[2px] bg-white rounded-md"></span>
+          <span className="w-[70%] h-[2px] bg-white rounded-md"></span>
+          <span className="w-full h-[2.1px] bg-white rounded-md"></span>
+        </div>
+        
+        <nav ref={navBar} className="items-center">
+          {/* Search Bar */}
+          <SearchBar />
+
+          {/* Navigation Links  */}
           <Link className="link nav-link" onClick={deActiveNavBar} to="/">
             Home
           </Link>
@@ -66,7 +76,6 @@ const Header = () => {
               >
                 Cart (0)
               </Link>
-              {/* <Link className="link btn"onClick={logout} to="/login">Logout</Link> */}
               <div
                 className="relative inline-block text-left "
                 onClick={() => setHidden((prev) => !prev)}
@@ -115,7 +124,10 @@ const Header = () => {
                     </Link>
                     <Link
                       className=" block px-4 py-2 text-sm text-gray-900 hover:underline "
-                      onClick={(e)=>{logout(); deActiveNavBar(e)}}
+                      onClick={(e) => {
+                        logout();
+                        deActiveNavBar(e);
+                      }}
                       to="/login"
                     >
                       Logout
