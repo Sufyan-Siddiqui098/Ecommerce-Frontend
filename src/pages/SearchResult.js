@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 
 const SearchResult = () => {
   const { searchResult } = useSelector((state) => state.searchProduct);
+  document.title = 'Ecommerce | Search Result'
   return (
     <>
       <div className="p-2 w-full mb-5">
