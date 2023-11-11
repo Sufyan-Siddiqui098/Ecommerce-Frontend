@@ -9,6 +9,10 @@ import PriceFilter from "../components/Filters/PriceFilter";
 const Home = () => {
   const dispatch = useDispatch();
   const [categories, setCategories] = useState([]);
+  //loading
+  const [loading, setLoading] = useState(false);
+  //Pagination
+  const [page, setPage] = useState(1);
   //Filters
   const [checkCategory, setCheckCategory] = useState([]);
   const [radio, setRadio] = useState([]);
@@ -29,17 +33,32 @@ const Home = () => {
     setCheckCategory(all);
   };
 
+  const loadMore = async () => {
+    try {
+      setLoading(true);
+      setPage((pre) => pre + 1);
+      const res = await fetch(
+        `${process.env.REACT_APP_API}/api/v1/product/product-list/${page + 1}`
+      );
+      const json = await res.json();
+      setLoading(false);
+      if (json.success) {
+        setProducts([...products, ...json?.product]);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
-    const getAllProducts = async () => {
+    //Total products count
+    const getTotalProductCount = async () => {
       try {
         const res = await fetch(
-          `${process.env.REACT_APP_API}/api/v1/product/get-products`
+          `${process.env.REACT_APP_API}/api/v1/product/product-count`
         );
         const json = await res.json();
-        if (json.success) {
-          setProducts(json.product);
-          setProductCount(json.totalCount);
-        }
+        if (json.success) setProductCount(json.totalCount);
       } catch (error) {
         dispatch(triggerAlert(error));
         //Hiding alert
@@ -48,7 +67,7 @@ const Home = () => {
         }, 2000);
       }
     };
-
+    //Get categories for filters
     const getAllCategories = async () => {
       try {
         const res = await fetch(
@@ -67,12 +86,29 @@ const Home = () => {
       }
     };
 
+    //Get the product for user
+    const getProductList = async () => {
+      try {
+        const res = await fetch(
+          `${process.env.REACT_APP_API}/api/v1/product/product-list/1`
+        );
+        const json = await res.json();
+        setProducts(json.product);
+      } catch (error) {
+        dispatch(triggerAlert(error));
+        //Hiding alert
+        setTimeout(() => {
+          dispatch(switchAlert());
+        }, 2000);
+      }
+    };
+
     //Calling function
-    if (!checkCategory.length && !radio.length) {
-      getAllProducts();
-    }
+    setPage(1);
+    getProductList();
+    getTotalProductCount();
     getAllCategories();
-  }, [dispatch, radio.length, checkCategory.length]);
+  }, [dispatch]);
 
   useEffect(() => {
     const getFilteredProduct = async () => {
@@ -106,7 +142,7 @@ const Home = () => {
   document.title = "Ecommerce App | Home";
   return (
     <div className="min-h-creen flex w-full">
-      {/* Filter Column*/}
+      {/* ==========Filter Column */}
       <div className="flex flex-col items-center min-w-max min-h-screen relative bg-gray-50 overflow-x-scroll sm:overflow-hidden">
         {/* Menu for mobile view */}
         <div
@@ -161,10 +197,19 @@ const Home = () => {
         />
         {/* Price Filter */}
         <PriceFilter menu={menu} setRadio={setRadio} />
-      </div>
-      {/* Filter Column --- END */}
 
-      {/* Product Column */}
+        <button
+          className={`${
+            menu ? "visible" : "p-0 w-0 overflow-hidden invisible"
+          } p-1 rounded self-start ml-1 sm:w-[90%] bg-red-300 text-sm sm:visible`}
+          onClick={() => window.location.reload()}
+        >
+          Reset Filter
+        </button>
+      </div>
+      {/* =========Filter Column --- END */}
+
+      {/* ---------------- Product Column ---------------- */}
       <div className="flex flex-col w-full overflow-x-scroll">
         <div className="w-full flex justify-end">
           <p className="text-gray-500 mt-4 mr-3 sm:mr-4 font-semibold">
@@ -208,6 +253,23 @@ const Home = () => {
             </div>
           ))}
         </div>
+
+        {products?.length < productCount ? (
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              loadMore();
+            }}
+            disabled={!(products.length < productCount)}
+            className={`disabled:cursor-not-allowed disabled:opacity-30 w-max p-1 ml-1 mb-4 rounded px-2 bg-[#000000c4] text-[#fff] sm:ml-4`}
+          >
+            {loading ? "Loading" : "Load more.."}
+          </button>
+        ) : (
+          <p className=" mt-3 p-1 ml-1 mb-4 rounded px-2 opacity-60 text-center sm:ml-4">
+            No more Products
+          </p>
+        )}
       </div>
     </div>
   );
