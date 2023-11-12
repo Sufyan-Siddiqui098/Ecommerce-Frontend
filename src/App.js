@@ -11,7 +11,7 @@ import Login from "./pages/auth/Login";
 import Dashboard from "./pages/user/Dashboard";
 import PrivateRoute from "./components/Routes/Private";
 import ForgetPassword from "./pages/auth/ForgetPassword";
-import AdminRoute from './components/Routes/AdminRoute.js';
+import AdminRoute from "./components/Routes/AdminRoute.js";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import CreateCategory from "./pages/admin/CreateCategory";
 import CreateProduct from "./pages/admin/CreateProduct";
@@ -21,6 +21,7 @@ import UserOrders from "./pages/user/UserOrders";
 import Products from "./pages/admin/Products";
 import UpdateProduct from "./pages/admin/UpdateProduct";
 import SearchResult from "./pages/SearchResult.js";
+import ProductDetail from "./pages/ProductDetail.js";
 
 function App() {
   return (
@@ -29,34 +30,34 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path='/search' element={<SearchResult/>}/>
-          <Route path="/register" element={<Register/>} />
+          <Route path="/search" element={<SearchResult />} />
+          <Route path="/product/:slug" element={<ProductDetail />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/policy" element={<Policy />} />
-          <Route path="/login" element={<Login/>} />
+          <Route path="/login" element={<Login />} />
           {/*----USER - if Authorized then go to dashboard. Possible with Outlet */}
-          <Route path='/dashboard' element={<PrivateRoute/>}>
-            <Route path="user" element={<Dashboard/>} />
-            <Route path="user/profile" element={<UserProfile/>} />
-            <Route path="user/orders" element={<UserOrders/>} />
+          <Route path="/dashboard" element={<PrivateRoute />}>
+            <Route path="user" element={<Dashboard />} />
+            <Route path="user/profile" element={<UserProfile />} />
+            <Route path="user/orders" element={<UserOrders />} />
           </Route>
           {/* ------ Admin dashboard */}
-          <Route path='/dashboard' element={<AdminRoute/>}>
-            <Route path="admin" element={<AdminDashboard/>} />
-            <Route path="admin/create-category" element={<CreateCategory/>} />
-            <Route path="admin/products" element={<Products/>} />
-            <Route path="admin/product/:slug" element={<UpdateProduct/>} />
-            <Route path="admin/create-product" element={<CreateProduct/>} />
-            <Route path="admin/users" element={<Users/>} />
+          <Route path="/dashboard" element={<AdminRoute />}>
+            <Route path="admin" element={<AdminDashboard />} />
+            <Route path="admin/create-category" element={<CreateCategory />} />
+            <Route path="admin/products" element={<Products />} />
+            <Route path="admin/product/:slug" element={<UpdateProduct />} />
+            <Route path="admin/create-product" element={<CreateProduct />} />
+            <Route path="admin/users" element={<Users />} />
           </Route>
-          
-          <Route path="/forget-password" element={<ForgetPassword/>} />
+
+          <Route path="/forget-password" element={<ForgetPassword />} />
           <Route path="*" element={<PageNotFound />} />
-          
         </Routes>
       </main>
-      <Footer/>
+      <Footer />
     </>
   );
 }
