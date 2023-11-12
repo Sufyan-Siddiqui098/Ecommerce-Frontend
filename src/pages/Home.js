@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { switchAlert, triggerAlert } from "../store/UserSlice";
 import CategoryFilter from "../components/Filters/CategoryFilter";
 import PriceFilter from "../components/Filters/PriceFilter";
+import { Link } from "react-router-dom";
 // import { checkUser } from '../store/UserSlice';
 
 const Home = () => {
@@ -143,7 +144,7 @@ const Home = () => {
   return (
     <div className="min-h-creen flex w-full">
       {/* ==========Filter Column */}
-      <div className="flex flex-col items-center min-w-max min-h-screen relative bg-gray-50 overflow-x-scroll sm:overflow-hidden">
+      <div className="flex flex-col items-center min-w-max min-h-screen shadow-md relative bg-gradient-to-t from-[#e7e2e2] to-[#fff] overflow-x-scroll sm:overflow-hidden">
         {/* Menu for mobile view */}
         <div
           className=" self-start my-1 z-10 w-[50px]  flex justify-center items-center sm:hidden"
@@ -218,7 +219,8 @@ const Home = () => {
         </div>
         <div className="my-4 p-1 min-w-[60vw] sm:pl-4  flex gap-1 flex-wrap sm:gap-2">
           {products?.map((product) => (
-            <div
+            <Link
+              to={`/product/${product.slug}`}
               key={product._id}
               className="shadow-md border pb-1 rounded overflow-hidden w-40 sm:w-48 sm:min-h-[12rem] sm:h-[18rem] transition hover:scale-[1.02] focus:scale-[1.02]"
             >
@@ -243,14 +245,14 @@ const Home = () => {
 
                 <div className="flex justify-between items-center mt-2">
                   <button className="bg-blue-600 text-white text-sm sm:text-base rounded py-[.2rem] px-1 hover:bg-blue-800">
-                    Add To Cart
+                    More Detail
                   </button>
                   <p className="text-sm sm:text-base mt-1 text-gray-500 justify-self-end font-mono self-end font-semibold">
                     {product.price}$
                   </p>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 
