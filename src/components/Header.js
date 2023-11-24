@@ -4,12 +4,15 @@ import Alert from "./Alert";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser, switchAlert } from "../store/UserSlice";
 import SearchBar from "./SearchBar";
+import useCategory from "../hooks/useCategory";
 
 const Header = () => {
   const navBar = useRef(null);
   const sideBar = useRef(null);
   const dispatch = useDispatch();
   const [hidden, setHidden] = useState(true);
+
+  const categories = useCategory(); //custom hook
 
   const { authToken, userInfo } = useSelector((state) => state.user);
   //-- For Hamburger Icon
@@ -46,12 +49,15 @@ const Header = () => {
         </Link>
         <div className="sideBar" ref={sideBar} onClick={deActiveNavBar}></div>
         {/* Hamburger Menu icon */}
-        <div className="menu flex flex-col items-center gap-[5px] z-10 w-7 h-max" onClick={activeNavBar}>
+        <div
+          className="menu flex flex-col items-center gap-[5px] z-10 w-7 h-max"
+          onClick={activeNavBar}
+        >
           <span className="w-full h-[2px] bg-white rounded-md"></span>
           <span className="w-[70%] h-[2px] bg-white rounded-md"></span>
           <span className="w-full h-[2.1px] bg-white rounded-md"></span>
         </div>
-        
+
         <nav ref={navBar} className="items-center">
           {/* Search Bar */}
           <SearchBar />
@@ -60,13 +66,33 @@ const Header = () => {
           <Link className="link nav-link" onClick={deActiveNavBar} to="/">
             Home
           </Link>
-          <Link
-            className="link nav-link"
-            onClick={deActiveNavBar}
-            to="/category"
-          >
-            Category
-          </Link>
+          <div className="relative  group" onClick={deActiveNavBar}>
+            <span className="flex items-center gap-1 font-light">
+              Category{" "}
+              <svg
+                className="fill-white text-sm"
+                xmlns="http://www.w3.org/2000/svg"
+                height="1em"
+                viewBox="0 0 320 512"
+              >
+                <path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z" />
+              </svg>
+            </span>
+
+            {/* DropDown */}
+            <ul className="transition absolute invisible h-0 group-hover:visible group-hover:h-auto rounded flex -left-6 flex-col gap-1 z-10 bg-[#202020] top-[100%] py-3 px-2 shadow-md">
+              {categories?.map((cat) => (
+                <li key={cat._id} className="text-sm hover:border-b w-max">
+                  <Link
+                    className="hover:opacity-80"
+                    to={`/category/${cat.slug}`}
+                  >
+                    {cat.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
           {authToken ? (
             <>
               <Link
