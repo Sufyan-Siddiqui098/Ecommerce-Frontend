@@ -20,7 +20,8 @@ const SearchBar = () => {
         navigate("/search");
       }
     } catch (error) {
-      dispatch(triggerAlert(error));
+      dispatch(triggerAlert({success: false, message: "something went wrong!"}));
+      console.log(error)
       //Hiding alert
       setTimeout(() => {
         dispatch(switchAlert());
