@@ -1,15 +1,16 @@
-// import React, { useEffect } from 'react'
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { switchAlert, triggerAlert } from "../store/UserSlice";
 import CategoryFilter from "../components/Filters/CategoryFilter";
 import PriceFilter from "../components/Filters/PriceFilter";
 import { Link } from "react-router-dom";
-// import { checkUser } from '../store/UserSlice';
+import useCategory from "../hooks/useCategory";
 
 const Home = () => {
+  //custom hook
+  const categories = useCategory();
+
   const dispatch = useDispatch();
-  const [categories, setCategories] = useState([]);
   //loading
   const [loading, setLoading] = useState(false);
   //Pagination
@@ -68,24 +69,6 @@ const Home = () => {
         }, 2000);
       }
     };
-    //Get categories for filters
-    const getAllCategories = async () => {
-      try {
-        const res = await fetch(
-          `${process.env.REACT_APP_API}/api/v1/category/all-categories`
-        );
-        const json = await res.json();
-        if (json.success) {
-          setCategories(json.category);
-        }
-      } catch (error) {
-        dispatch(triggerAlert(error));
-        //Hiding alert
-        setTimeout(() => {
-          dispatch(switchAlert());
-        }, 2000);
-      }
-    };
 
     //Get the product for user
     const getProductList = async () => {
@@ -105,10 +88,8 @@ const Home = () => {
     };
 
     //Calling function
-    setPage(1);
     getProductList();
     getTotalProductCount();
-    getAllCategories();
   }, [dispatch]);
 
   useEffect(() => {
@@ -144,7 +125,7 @@ const Home = () => {
   return (
     <div className="min-h-creen flex w-full">
       {/* ==========Filter Column */}
-      <div className="flex flex-col items-center min-w-max min-h-screen shadow-md relative bg-gradient-to-t from-[#e7e2e2] to-[#fff] overflow-x-scroll sm:overflow-hidden">
+      <div className="flex flex-col items-center min-w-max min-h-screen shadow-md relative bg-[#202020] text-[#fff] overflow-x-scroll sm:overflow-hidden">
         {/* Menu for mobile view */}
         <div
           className=" self-start my-1 z-10 w-[50px]  flex justify-center items-center sm:hidden"
@@ -190,19 +171,21 @@ const Home = () => {
         >
           Filters
         </h3>
+        <hr className="w-[90%] mt-4" />
         {/* Category Filter */}
         <CategoryFilter
           menu={menu}
           handleFilterCategory={handleFilterCategory}
           categories={categories}
         />
+        <hr className="w-[90%] mt-4" />
         {/* Price Filter */}
         <PriceFilter menu={menu} setRadio={setRadio} />
 
         <button
           className={`${
             menu ? "visible" : "p-0 w-0 overflow-hidden invisible"
-          } p-1 rounded self-start ml-1 sm:w-[90%] bg-red-300 text-sm sm:visible`}
+          } p-1 rounded self-start ml-1 sm:w-[90%] bg-red-400 text-sm sm:visible`}
           onClick={() => window.location.reload()}
         >
           Reset Filter
@@ -263,7 +246,7 @@ const Home = () => {
               loadMore();
             }}
             disabled={!(products.length < productCount)}
-            className={`disabled:cursor-not-allowed disabled:opacity-30 w-max p-1 ml-1 mb-4 rounded px-2 bg-[#000000c4] text-[#fff] sm:ml-4`}
+            className={`disabled:cursor-not-allowed disabled:opacity-30 w-max p-1 ml-1 mb-4 rounded px-2 bg-[#202020] text-[#ffffff] sm:ml-4`}
           >
             {loading ? "Loading" : "Load more.."}
           </button>
