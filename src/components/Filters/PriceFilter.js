@@ -6,11 +6,9 @@ const PriceFilter = ({ menu, setRadio }) => {
     <div
       className={`text-sm sm:text-base ${
         menu ? "flex w-[50vw] visible" : "p-0 w-0 overflow-hidden invisible"
-      } px-1 py-3 min-h-min flex-col items-center border-y  transition-[width] my-7 sm:flex sm:w-64 sm:px-4 sm:pb-3 sm:visible `}
+      } px-1 py-3 min-h-min flex-col items-center  transition-[width] my-4 sm:flex sm:w-64 sm:px-4 sm:pb-3 sm:visible `}
     >
-      <h5 className="self-start mb-3 text-[#000000de] font-semibold">
-        By Price
-      </h5>
+      <h5 className="self-start mb-3 font-semibold">By Price</h5>
       {Prices?.map((p) => (
         <fieldset
           key={p._id}
