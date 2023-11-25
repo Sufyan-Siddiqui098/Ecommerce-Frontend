@@ -53,8 +53,8 @@ const Home = () => {
   };
 
   useEffect(() => {
-     //Total products count
-     const getTotalProductCount = async () => {
+    //Total products count
+    const getTotalProductCount = async () => {
       try {
         const res = await fetch(
           `${process.env.REACT_APP_API}/api/v1/product/product-count`
@@ -73,7 +73,7 @@ const Home = () => {
     //Get the product for user
     const getProductList = async () => {
       try {
-        setPage(1);     //setting page number for next product-list call.
+        setPage(1); //setting page number for next product-list call.
 
         const res = await fetch(
           `${process.env.REACT_APP_API}/api/v1/product/product-list/1`
@@ -88,7 +88,7 @@ const Home = () => {
         }, 2000);
       }
     };
-    //Get filtered products 
+    //Get filtered products
     const getFilteredProduct = async () => {
       try {
         const res = await fetch(
@@ -188,7 +188,7 @@ const Home = () => {
         <button
           className={`${
             menu ? "visible" : "p-0 w-0 overflow-hidden invisible"
-          } p-1 rounded self-start ml-1 sm:w-[90%] bg-red-400 text-sm sm:visible`}
+          } p-1 rounded self-start ml-1 sm:w-[90%] bg-red-500 text-sm sm:visible`}
           onClick={() => window.location.reload()}
         >
           Reset Filter
