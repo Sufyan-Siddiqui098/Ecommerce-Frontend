@@ -53,8 +53,8 @@ const Home = () => {
   };
 
   useEffect(() => {
-    //Total products count
-    const getTotalProductCount = async () => {
+     //Total products count
+     const getTotalProductCount = async () => {
       try {
         const res = await fetch(
           `${process.env.REACT_APP_API}/api/v1/product/product-count`
@@ -73,6 +73,8 @@ const Home = () => {
     //Get the product for user
     const getProductList = async () => {
       try {
+        setPage(1);     //setting page number for next product-list call.
+
         const res = await fetch(
           `${process.env.REACT_APP_API}/api/v1/product/product-list/1`
         );
@@ -86,13 +88,7 @@ const Home = () => {
         }, 2000);
       }
     };
-
-    //Calling function
-    getProductList();
-    getTotalProductCount();
-  }, [dispatch]);
-
-  useEffect(() => {
+    //Get filtered products 
     const getFilteredProduct = async () => {
       try {
         const res = await fetch(
@@ -116,8 +112,15 @@ const Home = () => {
         }, 2000);
       }
     };
+
+    //if filters are checked - call filtered product api function
     if (radio.length || checkCategory.length) {
       getFilteredProduct();
+    }
+    //If no filters - call all products api function
+    if (checkCategory.length < 1 && radio.length < 1) {
+      getTotalProductCount();
+      getProductList();
     }
   }, [dispatch, checkCategory, radio]);
 
