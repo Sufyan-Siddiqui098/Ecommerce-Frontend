@@ -81,6 +81,12 @@ const Header = () => {
 
             {/* DropDown */}
             <ul className="transition absolute invisible h-0 group-hover:visible group-hover:h-auto rounded flex -left-6 flex-col gap-1 z-10 bg-[#202020] top-[100%] py-3 px-2 shadow-md">
+              <li className="text-sm hover:border-b w-max">
+                <Link to={'/categories'}
+                className="hover:opacity-80">
+                  All Categories
+                </Link>
+              </li>
               {categories?.map((cat) => (
                 <li key={cat._id} className="text-sm hover:border-b w-max">
                   <Link
