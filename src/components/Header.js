@@ -66,7 +66,7 @@ const Header = () => {
           <Link className="link nav-link" onClick={deActiveNavBar} to="/">
             Home
           </Link>
-          <div className="relative  group" onClick={deActiveNavBar}>
+          <div className="relative  group">
             <span className="flex items-center gap-1 font-light">
               Category{" "}
               <svg
@@ -80,17 +80,19 @@ const Header = () => {
             </span>
 
             {/* DropDown */}
-            <ul className="transition absolute invisible h-0 group-hover:visible group-hover:h-auto rounded flex -left-6 flex-col gap-1 z-10 bg-[#202020] top-[100%] py-3 px-2 shadow-md">
+            <ul
+              onClick={deActiveNavBar}
+              className="transition absolute invisible h-0 group-focus:visible group-focus:h-auto group-hover:visible group-hover:h-auto rounded flex -left-8 min-w-[10rem] flex-col gap-1 z-10 bg-[#f5f5f5] top-[100%] py-3 px-2 shadow-md text-black"
+            >
               <li className="text-sm hover:border-b w-max">
-                <Link to={'/categories'}
-                className="hover:opacity-80">
+                <Link to={"/categories"} className="hover:font-semibold">
                   All Categories
                 </Link>
               </li>
               {categories?.map((cat) => (
                 <li key={cat._id} className="text-sm hover:border-b w-max">
                   <Link
-                    className="hover:opacity-80"
+                    className="hover:font-semibold"
                     to={`/category/${cat.slug}`}
                   >
                     {cat.name}
@@ -101,13 +103,15 @@ const Header = () => {
           </div>
           {authToken ? (
             <>
-              <Link
-                className="link nav-link"
-                onClick={deActiveNavBar}
-                to="/cart"
-              >
-                Cart (0)
-              </Link>
+              {userInfo.role !== 1 && (
+                <Link
+                  className="link nav-link"
+                  onClick={deActiveNavBar}
+                  to="/cart"
+                >
+                  Cart (0)
+                </Link>
+              )}
               <div
                 className="relative inline-block text-left "
                 onClick={() => setHidden((prev) => !prev)}
