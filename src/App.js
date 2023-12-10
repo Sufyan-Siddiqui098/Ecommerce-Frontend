@@ -22,6 +22,8 @@ import Products from "./pages/admin/Products";
 import UpdateProduct from "./pages/admin/UpdateProduct";
 import SearchResult from "./pages/SearchResult.js";
 import ProductDetail from "./pages/ProductDetail.js";
+import Categories from "./pages/Categories.js";
+import CategorizedProduct from "./pages/CategorizedProduct.js";
 
 function App() {
   return (
@@ -37,6 +39,10 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/policy" element={<Policy />} />
           <Route path="/login" element={<Login />} />
+          {/* Category page */}
+          <Route path="/categories" element={<Categories/>} />
+          {/* Categorized products */}
+          <Route path="/category/:slug" element={<CategorizedProduct/>} />
           {/*----USER - if Authorized then go to dashboard. Possible with Outlet */}
           <Route path="/dashboard" element={<PrivateRoute />}>
             <Route path="user" element={<Dashboard />} />
