@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logoutUser, switchAlert } from "../store/UserSlice";
 import SearchBar from "./SearchBar";
 import useCategory from "../hooks/useCategory";
+import { resetCart } from "../store/CartSlice";
 
 const Header = () => {
   const navBar = useRef(null);
@@ -15,6 +16,9 @@ const Header = () => {
   const categories = useCategory(); //custom hook
 
   const { authToken, userInfo } = useSelector((state) => state.user);
+  //Cart count from Redux Store
+  const { cartProductCount } = useSelector((state) => state.cart);
+
   //-- For Hamburger Icon
   const activeNavBar = () => {
     if (navBar.current.classList.contains("active")) {
@@ -36,6 +40,8 @@ const Header = () => {
   //Logout User
   const logout = () => {
     dispatch(logoutUser("Logout Successfully"));
+    //reset the cart product
+    dispatch(resetCart());
     setTimeout(() => {
       dispatch(switchAlert());
     }, 2000);
@@ -43,7 +49,7 @@ const Header = () => {
 
   return (
     <>
-      <header>
+      <header className="py-5 pr-4">
         <Link to="/" className="link logo text-[1rem] tracking-normal">
           🛒 Ecommerce App
         </Link>
@@ -105,11 +111,15 @@ const Header = () => {
             <>
               {userInfo.role !== 1 && (
                 <Link
-                  className="link nav-link"
+                  className="link nav-link relative pr-3"
                   onClick={deActiveNavBar}
                   to="/cart"
                 >
-                  Cart (0)
+                  Cart{" "}
+                  <span className="bg-[#fff] text-black px-2 py-[1px]  font-mono rounded-xl text-center absolute -right-3 -top-2  sm:-right-2 text-sm leading-4">
+                    {cartProductCount}
+                    {cartProductCount > 0 && "+"}
+                  </span>
                 </Link>
               )}
               <div
@@ -189,11 +199,15 @@ const Header = () => {
                 Login
               </Link>
               <Link
-                className="link nav-link"
+                className="link w-max nav-link relative pr-3"
                 onClick={deActiveNavBar}
                 to="/cart"
               >
-                Cart (0)
+                Cart{" "}
+                <span className="bg-[#fff] text-black px-2 py-[1px]  font-mono rounded-xl text-center absolute -right-3 -top-2  sm:-right-2 text-sm leading-4">
+                  {cartProductCount}
+                  {cartProductCount > 0 && "+"}
+                </span>
               </Link>
             </>
           )}
