@@ -3,8 +3,8 @@ import { useDispatch } from "react-redux";
 import { switchAlert, triggerAlert } from "../store/UserSlice";
 import CategoryFilter from "../components/Filters/CategoryFilter";
 import PriceFilter from "../components/Filters/PriceFilter";
-import { Link } from "react-router-dom";
 import useCategory from "../hooks/useCategory";
+import ProductCard from "../components/ProductCard";
 
 const Home = () => {
   //custom hook
@@ -203,48 +203,10 @@ const Home = () => {
             Total Product : {productCount}
           </p>
         </div>
-        {/* Mapping Product's array */}
-        <div className="my-4 p-1 min-w-[60vw] sm:pl-4  flex gap-1 flex-wrap sm:gap-2">
-          {products?.map((product) => (
-            <div
-              key={product._id}
-              className="shadow-md border pb-1 rounded overflow-hidden w-44 sm:w-48 sm:min-h-[12rem] sm:h-[20rem] transition hover:scale-[1.02] focus:scale-[1.02]"
-            >
-              <div className="h-36">
-                <img
-                  className="h-full w-full object-cover"
-                  src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${product._id}`}
-                  alt={product.name}
-                />
-              </div>
-              <div className="flex flex-col gap-1 p-1 h-[calc(100%-9.1rem)]  sm:p-3">
-                <p className="text-sm text-sky-700 sm:text-base font-semibold my-1 ">
-                  {product.name}
-                </p>
-                <div className="flex flex-col justify-between h-full">
-                  <p className="text-xs sm:text-sm">
-                    {product.description.length > 30
-                      ? product.description.substring(0, 50) + "..."
-                      : product.description}
-                  </p>
-                </div>
 
-                <div className="flex justify-between items-center mt-2">
-                  <Link
-                    to={`/product/${product.slug}`}
-                    className="bg-blue-600 text-white text-sm sm:text-base rounded py-[.2rem] px-1 hover:bg-blue-800"
-                  >
-                    More Detail
-                  </Link>
-                  <p className="text-sm sm:text-base mt-1 text-gray-500 justify-self-end font-mono self-end font-semibold">
-                    {product.price}$
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
+        <div className="my-4 p-1 min-w-[60vw] sm:pl-4  flex gap-1 flex-wrap sm:gap-2 md:pr-2">
+          <ProductCard products={products} />
         </div>
-
         {products?.length < productCount ? (
           <button
             onClick={(e) => {
@@ -252,7 +214,7 @@ const Home = () => {
               loadMore();
             }}
             disabled={!(products.length < productCount)}
-            className={`disabled:cursor-not-allowed disabled:opacity-30 w-max p-1 ml-1 mb-4 rounded px-2 bg-[#202020] text-[#ffffff] sm:ml-4`}
+            className={`disabled:cursor-not-allowed disabled:opacity-30 w-max p-1 ml-1 mb-4 rounded text-sm px-2 bg-[#202020] text-[#ffffff] sm:ml-4 sm:text-base`}
           >
             {loading ? "Loading" : "Load more.."}
           </button>
