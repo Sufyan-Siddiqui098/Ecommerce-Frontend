@@ -1,26 +1,26 @@
-import {  createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 export const userSlice = createSlice({
   name: "user",
   initialState: {
-    userInfo: localStorage.getItem('user')? JSON.parse(localStorage.getItem('user')) : '',
+    userInfo: localStorage.getItem("user")
+      ? JSON.parse(localStorage.getItem("user"))
+      : "",
     message: "",
     error: false,
     alert: false,
-    authToken: localStorage.getItem("auth") ? localStorage.getItem('auth') : ""
+    authToken: localStorage.getItem("auth") ? localStorage.getItem("auth") : "",
   },
-  //============ REDUCERS ============ 
+  //============ REDUCERS ============
   reducers: {
-
-    triggerAlert : (state, action) =>{
+    triggerAlert: (state, action) => {
       state.alert = true;
-      if(!action.payload.success) {
-        state.error  = true
+      if (!action.payload.success) {
+        state.error = true;
       } else {
         state.error = false;
-      } 
+      }
       state.message = action.payload.message;
-
     },
     // -switch the alert component's display. will use it inside SetTimeout.
     switchAlert: (state, action) => {
@@ -43,17 +43,17 @@ export const userSlice = createSlice({
       state.message = action.payload.message;
     },
     //- LOGOUT USER
-    logoutUser : (state, action) => {
-      localStorage.clear()
-      state.userInfo = ""
-      state.authToken = ""
+    logoutUser: (state, action) => {
+      localStorage.clear();
+      state.userInfo = "";
+      state.authToken = "";
       // To get alert on logout
       state.alert = true;
       state.message = action.payload;
     },
     // ------------- REGISTER / SIGN-UP USER
-    registerUser : (state, action) => {
-      if(!action.payload.success) {
+    registerUser: (state, action) => {
+      if (!action.payload.success) {
         state.error = true;
       } else {
         state.error = false;
@@ -63,18 +63,24 @@ export const userSlice = createSlice({
     },
 
     // ------------- Forgot passowrd
-    forgetPassword : (state, action) => {
-      if(!action.payload.success){
+    forgetPassword: (state, action) => {
+      if (!action.payload.success) {
         state.error = true;
       } else {
         state.error = false;
       }
       state.alert = true;
       state.message = action.payload.message;
-    }
-  }
-  
+    },
+  },
 });
 
-export const { loginUser, triggerAlert, switchAlert, registerUser, logoutUser, forgetPassword } = userSlice.actions;
+export const {
+  loginUser,
+  triggerAlert,
+  switchAlert,
+  registerUser,
+  logoutUser,
+  forgetPassword,
+} = userSlice.actions;
 export default userSlice.reducer;
