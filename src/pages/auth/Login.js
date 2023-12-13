@@ -3,6 +3,7 @@ import "../styles/register.css";
 import { loginUser, switchAlert } from "../../store/UserSlice";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
+import { resetCart } from "../../store/CartSlice";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -21,6 +22,8 @@ const Login = () => {
   },[])
 
   const handleLogin = async (e) => {
+    //reset the cart item 
+    dispatch(resetCart());
     e.preventDefault();
     try {
       const user = { email, password };
