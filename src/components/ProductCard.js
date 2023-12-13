@@ -1,7 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { addToCart } from "../store/CartSlice";
+import { switchAlert, triggerAlert } from "../store/UserSlice";
+import { useDispatch } from "react-redux";
 
 const ProductCard = ({ products }) => {
+  const dispatch = useDispatch();
+
+  const addItemToCart = (product) => {
+    dispatch(addToCart(product));
+    dispatch(triggerAlert({ success: true, message: "Added Successfully !" }));
+    setTimeout(() => {
+      dispatch(switchAlert());
+    }, 1200);
+  };
+
   return (
     <>
       {/* Mapping Product's array */}
@@ -37,7 +50,10 @@ const ProductCard = ({ products }) => {
             </div>
             {/* CART BUTTONS */}
             <div className="flex justify-between items-center gap-1 mt-2 flex-wrap">
-              <button className="bg-blue-600 text-white text-xs sm:text-sm rounded pb-[.25rem] pt-[.2rem] px-[5px] hover:bg-blue-800">
+              <button
+                onClick={() => addItemToCart(product)}
+                className="bg-blue-600 text-white text-xs sm:text-sm rounded pb-[.25rem] pt-[.2rem] px-[5px] hover:bg-blue-800"
+              >
                 Add to Cart
               </button>
               <Link
@@ -50,7 +66,6 @@ const ProductCard = ({ products }) => {
           </div>
         </div>
       ))}
-      {/* </div> */}
     </>
   );
 };
