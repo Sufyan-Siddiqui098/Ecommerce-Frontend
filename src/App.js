@@ -24,6 +24,7 @@ import SearchResult from "./pages/SearchResult.js";
 import ProductDetail from "./pages/ProductDetail.js";
 import Categories from "./pages/Categories.js";
 import CategorizedProduct from "./pages/CategorizedProduct.js";
+import CartPage from "./pages/CartPage.js";
 
 function App() {
   return (
@@ -41,6 +42,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           {/* Category page */}
           <Route path="/categories" element={<Categories/>} />
+          {/* Cart page */}
+          <Route path="/cart" element={<CartPage/>} />
           {/* Categorized products */}
           <Route path="/category/:slug" element={<CategorizedProduct/>} />
           {/*----USER - if Authorized then go to dashboard. Possible with Outlet */}
