@@ -12,17 +12,18 @@ const Login = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  
-  useEffect(()=>{
+
+  useEffect(() => {
     //Clear the localStorage to avoid multiple auth-token.
-    document.title = 'Ecommerce App | Login'
-    if(localStorage.length>0){
-      localStorage.clear();
+    document.title = "Ecommerce App | Login";
+    if (localStorage.length > 0) {
+      localStorage.removeItem("user");
+      localStorage.removeItem("auth");
     }
-  },[])
+  }, []);
 
   const handleLogin = async (e) => {
-    //reset the cart item 
+    //reset the cart item
     dispatch(resetCart());
     e.preventDefault();
     try {
@@ -40,12 +41,12 @@ const Login = () => {
 
       const json = await response.json();
       // Auth token is setted inside local storage.
-      localStorage.setItem("auth", json.token)
-      localStorage.setItem('user', JSON.stringify(json.user))
+      localStorage.setItem("auth", json.token);
+      localStorage.setItem("user", JSON.stringify(json.user));
       dispatch(loginUser(json));
 
       if (json.success) {
-        navigate(location.state ||"/");
+        navigate(location.state || "/");
       }
       // -------- HIDE ALERT MESSAGE
       setTimeout(() => {
@@ -61,7 +62,9 @@ const Login = () => {
       <form className="sm:!px-6 !py-[2em]" onSubmit={handleLogin}>
         <h1 className="text-2xl mb-7 sm:text-3xl sm:mb-8">Login Page</h1>
         <div className="grid grid-cols-1 sm:grid-cols-[1fr_3fr] gap-[1em] w-full">
-          <label htmlFor="emial" className="hidden sm:block">Email</label>
+          <label htmlFor="emial" className="hidden sm:block">
+            Email
+          </label>
           <input
             className="p-2 rounded-md border-[1px] border-gray-300"
             type="email"
@@ -74,7 +77,9 @@ const Login = () => {
           />
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-[1fr_3fr] gap-[1em] w-full">
-          <label htmlFor="password" className="hidden sm:block">Password</label>
+          <label htmlFor="password" className="hidden sm:block">
+            Password
+          </label>
           <input
             className="p-2 rounded-md border-[1px] border-gray-300"
             type="password"
@@ -88,7 +93,13 @@ const Login = () => {
         </div>
 
         <button className="btn-submit">Login</button>
-        <button type="button" className="text-md text-gray-600 hover:underline" onClick={()=>navigate('/forget-password')}>Forget Password</button>
+        <button
+          type="button"
+          className="text-md text-gray-600 hover:underline"
+          onClick={() => navigate("/forget-password")}
+        >
+          Forget Password
+        </button>
       </form>
     </div>
   );
