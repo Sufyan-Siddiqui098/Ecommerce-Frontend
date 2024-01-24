@@ -8,6 +8,7 @@ import { resetCart } from "../../store/CartSlice";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [disableBtn, setDisableBtn] = useState(false);
   const location = useLocation();
 
   const navigate = useNavigate();
@@ -26,6 +27,7 @@ const Login = () => {
     //reset the cart item
     dispatch(resetCart());
     e.preventDefault();
+    setDisableBtn(true);
     try {
       const user = { email, password };
       const response = await fetch(
@@ -92,7 +94,7 @@ const Login = () => {
           />
         </div>
 
-        <button className="btn-submit">Login</button>
+        <button disabled={disableBtn} className="btn-submit disabled:opacity-60 disabled:cursor-not-allowed">Login</button>
         <button
           type="button"
           className="text-md text-gray-600 hover:underline"
