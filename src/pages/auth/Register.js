@@ -12,12 +12,15 @@ const Register = () => {
   const [address, setAddress] = useState("");
   const [answer, setAnswer] = useState("");
 
+  const [disableBtn, setDisableBtn] = useState(false);
+
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    setDisableBtn(true)
     try {
       const user = { name, email, password, phone, address, answer };
       const response = await fetch(
@@ -31,7 +34,6 @@ const Register = () => {
         }
       );
       const json = await response.json();
-      console.log("json inside register handler ", json);
       dispatch(registerUser(json));
       if (json.success || json.message === "Already Registered please login") {
         navigate("/login");
@@ -130,7 +132,7 @@ const Register = () => {
             onChange={(e) => setAnswer(e.target.value)}
           ></input>
         </div>
-        <button className="btn-submit">Register</button>
+        <button disabled={disableBtn}  className="btn-submit disabled:opacity-70 disabled:cursor-not-allowed">Register</button>
       </form>
     </div>
   );
