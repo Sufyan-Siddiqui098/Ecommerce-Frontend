@@ -12,6 +12,9 @@ const CreateProduct = () => {
   const [search, setSearch] = useState("");
   const [hide, setHide] = useState(true);
 
+  //button disable
+  const [disableBtn, setDisableBtn] = useState(false);
+
   //Categories get from API
   const [categories, setCategories] = useState([]);
 
@@ -30,6 +33,7 @@ const CreateProduct = () => {
   //Create Product Handler
   const handleCreateProduct = async () => {
     try {
+      setDisableBtn(true)
       //if we wrap all input tags in the form-element(html) we won't use formData
       const productData = new FormData();
       productData.append("name", name);
@@ -61,6 +65,7 @@ const CreateProduct = () => {
       //Hiding alert
       setTimeout(() => {
         dispatch(switchAlert());
+        setDisableBtn(false);
       }, 2000);
     }
   };
@@ -247,7 +252,8 @@ const CreateProduct = () => {
 
             {/* CREATE PRODUCT BUTTON */}
             <button
-              className="bg-blue-600 border-none outline-none text-white hover:bg-blue-400"
+              disabled={disableBtn}
+              className="bg-blue-600 border-none outline-none text-white hover:bg-blue-400 disabled:cursor-not-allowed disabled:brightness-50"
               onClick={handleCreateProduct}
             >
               CREATE PRODUCT
