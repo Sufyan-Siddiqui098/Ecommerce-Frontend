@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { switchAlert, triggerAlert } from "../store/UserSlice";
 import { useDispatch } from "react-redux";
 import ProductCard from "../components/ProductCard";
+import { addToCart } from "../store/CartSlice";
 
 const ProductDetail = () => {
   const dispatch = useDispatch();
@@ -10,6 +11,15 @@ const ProductDetail = () => {
   const [product, setProduct] = useState();
   //Related products
   const [relatedProduct, setRelatedProduct] = useState([]);
+
+  const addItemToCart = (product) => {
+    dispatch(addToCart(product));
+    dispatch(triggerAlert({ success: true, message: "Added Successfully !" }));
+    setTimeout(() => {
+      dispatch(switchAlert());
+    }, 1200);
+  };
+
   useEffect(() => {
     const getSingleProduct = async () => {
       try {
@@ -86,7 +96,7 @@ const ProductDetail = () => {
               </p>
             </div>
 
-            <button className="border w-max px-2 py-1 text-[#fffafa] mt-4 bg-blue-500 rounded-md">
+            <button onClick={()=>addItemToCart(product)} className="border w-max px-2 py-1 text-[#fffafa] mt-4 bg-blue-500 rounded-md">
               Add to Cart
             </button>
           </div>
