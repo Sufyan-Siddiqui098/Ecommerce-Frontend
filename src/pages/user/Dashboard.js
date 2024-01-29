@@ -24,6 +24,9 @@ const Dashboard = () => {
           <p className="sm:text-xl sm:my-1">
             <label className="font-medium">Contact:</label> {userInfo.phone}
           </p>
+          <p className="sm:text-xl sm:my-1">
+            <label className="font-medium">Address:</label> {userInfo.address}
+          </p>
         </div>
       </div>
     </div>
