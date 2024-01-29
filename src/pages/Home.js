@@ -126,9 +126,9 @@ const Home = () => {
 
   document.title = "Ecommerce App | Home";
   return (
-    <div className="min-h-creen flex w-full ">
+    <div className="min-h-creen flex w-full">
       {/* ==========Filter Column */}
-      <div className=" flex flex-col items-center min-w-max min-h-screen shadow-md relative bg-[#202020] text-[#fff] px-1 overflow-x-scroll sm:overflow-hidden">
+      <div className="flex flex-col items-center min-w-max min-h-screen shadow-md relative bg-[#202020] text-[#fff] px-1 overflow-x-scroll sm:overflow-hidden">
         {/* Menu for mobile view */}
         <div
           className=" self-start my-1 z-10 w-[50px]  flex justify-center items-center sm:hidden"
