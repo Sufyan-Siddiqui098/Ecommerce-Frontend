@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, removeFromCart } from "../store/CartSlice";
+import { Link } from "react-router-dom";
 
 const CartPage = () => {
   const dispatch = useDispatch();
@@ -30,7 +31,7 @@ const CartPage = () => {
     dispatch(removeFromCart(myCart));
     //------------ set localStorage with newCart item
     if(myCart.length>0){
-      console.log('jlk', myCart)
+      // console.log('inside cartPage - remove cart', myCart)
       localStorage.setItem("cart", JSON.stringify(myCart));
     } else{
       localStorage.removeItem('cart')
@@ -49,7 +50,7 @@ const CartPage = () => {
       {/* User welcome */}
       <div>
         <h1 className="text-center my-1 text-xl font-semibold py-2  border bg-gray-100">
-          Hello {userInfo?.name}
+          Welcome {userInfo?.name || "Guest"}
         </h1>
         {/* Cart related message */}
         <p className="text-center text-sm md:text-base">
@@ -68,7 +69,7 @@ const CartPage = () => {
           {cartProduct.length>0 && cartProduct?.map((product, index) => (
             <div
               key={index}
-              className="grid grid-cols-[1fr_1.78fr] grid-rows-1 items-center gap-[5px] items shadow-md border pb-1 rounded overflow-hidden w-full transition max-h-44 hover:scale-[1.02] focus:scale-[1.02] md:max-h-48 md:w-[90%] "
+              className="grid grid-cols-[1fr_1.78fr] grid-rows-1 items-center gap-[5px] items shadow-md border pb-1 rounded overflow-hidden w-full transition max-h-36 hover:scale-[1.02] focus:scale-[1.02] md:max-h-48 md:w-[90%] "
             >
               <div className="min-w-[4rem]  h-full">
                 <img
@@ -79,7 +80,7 @@ const CartPage = () => {
               </div>
               {/* decription */}
               <div className="w-full text-xs sm:text-base pr-[2px] h-full  flex flex-col gap-1">
-                <p className="text-sm font-medium text-sky-800 py-1">
+                <p className="text-sm font-semibold text-sky-800 py-1">
                   {product.name}
                 </p>
                 <p className="overflow-hidden text-ellipsis h-[50%]">
@@ -105,7 +106,7 @@ const CartPage = () => {
         </div>
 
         {/* Payment checkout total */}
-        <div className="border text-xs sm:text-sm md:text-base text-center md:w-[30%] h-full">
+        <div className="py-2 border text-xs sm:text-sm md:text-base text-center md:w-[30%] h-min">
           <h4 className="font-medium my-2 sm:text-base md:text-lg">
             Cart Summary
           </h4>
@@ -118,6 +119,22 @@ const CartPage = () => {
               Price: <strong>{price()}</strong>
             </p>
           </div>
+
+            {/* IF LOGIN OR not */}
+          <div className="">
+            {authToken && userInfo ? (
+              <div className="flex justify-center flex-wrap items-center gap-1">
+                <h4 className="font-medium">Current Address: </h4>
+                <h5 className="italic">{userInfo.address}</h5>
+                <div className="w-full my-2">
+                <Link to="/dashboard/user/profile" className="text-[11px] sm:text-base  p-1 sm:px-2  bg-blue-700 rounded text-white hover:bg-blue-500">Update Address</Link>
+                </div>
+              </div>
+            ):(
+              <Link className="bg-yellow-700 my-2 p-1 px-2 rounded  text-white hover:brightness-90">Please Login</Link>
+            )}
+          </div>
+          
         </div>
       </div>
     </>
