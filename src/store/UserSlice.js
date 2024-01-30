@@ -72,6 +72,10 @@ export const userSlice = createSlice({
       state.alert = true;
       state.message = action.payload.message;
     },
+    //-------------- Update User Profile
+    updateProfile: (state, action) => {
+      state.userInfo = action.payload.user;
+    },
   },
 });
 
@@ -82,5 +86,6 @@ export const {
   registerUser,
   logoutUser,
   forgetPassword,
+  updateProfile,
 } = userSlice.actions;
 export default userSlice.reducer;
