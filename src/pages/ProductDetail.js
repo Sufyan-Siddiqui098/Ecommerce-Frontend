@@ -96,7 +96,10 @@ const ProductDetail = () => {
               </p>
             </div>
 
-            <button onClick={()=>addItemToCart(product)} className="border w-max px-2 py-1 text-[#fffafa] mt-4 bg-blue-500 rounded-md">
+            <button
+              onClick={() => addItemToCart(product)}
+              className="border w-max px-2 py-1 text-[#fffafa] mt-4 bg-blue-500 rounded-md"
+            >
               Add to Cart
             </button>
           </div>

@@ -41,11 +41,11 @@ function App() {
           <Route path="/policy" element={<Policy />} />
           <Route path="/login" element={<Login />} />
           {/* Category page */}
-          <Route path="/categories" element={<Categories/>} />
+          <Route path="/categories" element={<Categories />} />
           {/* Cart page */}
-          <Route path="/cart" element={<CartPage/>} />
+          <Route path="/cart" element={<CartPage />} />
           {/* Categorized products */}
-          <Route path="/category/:slug" element={<CategorizedProduct/>} />
+          <Route path="/category/:slug" element={<CategorizedProduct />} />
           {/*----USER - if Authorized then go to dashboard. Possible with Outlet */}
           <Route path="/dashboard" element={<PrivateRoute />}>
             <Route path="user" element={<Dashboard />} />

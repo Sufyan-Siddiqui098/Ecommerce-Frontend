@@ -53,6 +53,7 @@ const Login = () => {
       // -------- HIDE ALERT MESSAGE
       setTimeout(() => {
         dispatch(switchAlert());
+        setDisableBtn(false);
       }, 2000);
     } catch (error) {
       console.log("error in login", error);
@@ -94,7 +95,12 @@ const Login = () => {
           />
         </div>
 
-        <button disabled={disableBtn} className="btn-submit disabled:opacity-60 disabled:cursor-not-allowed">Login</button>
+        <button
+          disabled={disableBtn}
+          className="p-1 px-2 sm:px-4 sm:py-2 border rounded-md bg-black text-white hover:bg-[#fff] hover:text-black disabled:brightness-50 disabled:cursor-not-allowed"
+        >
+          Login
+        </button>
         <button
           type="button"
           className="text-md text-gray-600 hover:underline"
