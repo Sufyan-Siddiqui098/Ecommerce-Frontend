@@ -131,7 +131,7 @@ const CartPage = () => {
                 </div>
               </div>
             ):(
-              <Link className="bg-yellow-700 my-2 p-1 px-2 rounded  text-white hover:brightness-90">Please Login</Link>
+              <Link to="/login" className="bg-yellow-700 my-2 p-1 px-2 rounded  text-white hover:brightness-90">Please Login</Link>
             )}
           </div>
           
